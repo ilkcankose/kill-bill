@@ -244,6 +244,7 @@ export default function Home() {
                 <input
                   type="text"
                   className={inputClass}
+                  placeholder="Hattori Hanzo"
                   value={data.fromName}
                   onChange={(e) => update("fromName", e.target.value)}
                 />
@@ -253,6 +254,7 @@ export default function Home() {
                 <input
                   type="email"
                   className={inputClass}
+                  placeholder="hanzo@swords.jp"
                   value={data.fromEmail}
                   onChange={(e) => update("fromEmail", e.target.value)}
                 />
@@ -262,6 +264,7 @@ export default function Home() {
                 <textarea
                   rows={3}
                   className={inputClass}
+                  placeholder={"Okinawa Sword Shop\nOkinawa, Japan"}
                   value={data.fromAddress}
                   onChange={(e) => update("fromAddress", e.target.value)}
                 />
@@ -277,6 +280,7 @@ export default function Home() {
                 <input
                   type="text"
                   className={inputClass}
+                  placeholder="Deadly Viper Assassination Squad"
                   value={data.toName}
                   onChange={(e) => update("toName", e.target.value)}
                 />
@@ -286,6 +290,7 @@ export default function Home() {
                 <input
                   type="email"
                   className={inputClass}
+                  placeholder="bill@vipers.org"
                   value={data.toEmail}
                   onChange={(e) => update("toEmail", e.target.value)}
                 />
@@ -295,6 +300,7 @@ export default function Home() {
                 <textarea
                   rows={3}
                   className={inputClass}
+                  placeholder={"Two Pines Chapel\nEl Paso, Texas"}
                   value={data.toAddress}
                   onChange={(e) => update("toAddress", e.target.value)}
                 />
@@ -305,9 +311,9 @@ export default function Home() {
 
         {/* Services */}
         <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
             <h2 className="text-lg font-semibold text-[var(--yellow)]">Services</h2>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <label className="text-xs font-semibold text-[var(--text-label)] uppercase tracking-wide">Currency</label>
               <select
                 className="rounded-lg border border-[var(--input-border)] bg-[var(--input-bg)] px-3 py-1.5 text-sm text-white focus:border-[var(--yellow)] outline-none"
@@ -336,11 +342,11 @@ export default function Home() {
           </div>
           <div className="space-y-3">
             {data.services.map((service, i) => (
-              <div key={i} className="flex items-center gap-3">
+              <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
                 <input
                   type="text"
                   className={`${inputClass} flex-1`}
-                  placeholder="Description"
+                  placeholder="Sword sharpening service"
                   value={service.description}
                   onChange={(e) =>
                     updateService(i, "description", e.target.value)
@@ -350,23 +356,23 @@ export default function Home() {
                   <span className="text-sm text-[var(--text-muted)]">{currencySymbol}</span>
                   <input
                     type="number"
-                    className={`${inputClass} w-32`}
+                    className={`${inputClass} w-full sm:w-32`}
                     placeholder="0.00"
                     value={service.amount || ""}
                     onChange={(e) =>
                       updateService(i, "amount", e.target.value)
                     }
                   />
+                  {data.services.length > 1 && (
+                    <button
+                      onClick={() => removeService(i)}
+                      className="text-[var(--accent-red)] hover:text-red-400 text-lg px-2 transition"
+                      title="Remove"
+                    >
+                      x
+                    </button>
+                  )}
                 </div>
-                {data.services.length > 1 && (
-                  <button
-                    onClick={() => removeService(i)}
-                    className="text-[var(--accent-red)] hover:text-red-400 text-lg px-2 transition"
-                    title="Remove"
-                  >
-                    x
-                  </button>
-                )}
               </div>
             ))}
           </div>
@@ -405,6 +411,7 @@ export default function Home() {
               <input
                 type="text"
                 className={inputClass}
+                placeholder="Bank of Okinawa"
                 value={data.bankName}
                 onChange={(e) => update("bankName", e.target.value)}
               />
@@ -414,6 +421,7 @@ export default function Home() {
               <input
                 type="text"
                 className={inputClass}
+                placeholder="1 Katana Blvd, Okinawa"
                 value={data.bankAddress}
                 onChange={(e) => update("bankAddress", e.target.value)}
               />
@@ -423,6 +431,7 @@ export default function Home() {
               <input
                 type="text"
                 className={inputClass}
+                placeholder="0000KILL"
                 value={data.routing}
                 onChange={(e) => update("routing", e.target.value)}
               />
@@ -432,6 +441,7 @@ export default function Home() {
               <input
                 type="text"
                 className={inputClass}
+                placeholder="BILL-0001"
                 value={data.accountNumber}
                 onChange={(e) => update("accountNumber", e.target.value)}
               />
@@ -441,6 +451,7 @@ export default function Home() {
               <input
                 type="text"
                 className={inputClass}
+                placeholder="Revenge Checking"
                 value={data.accountType}
                 onChange={(e) => update("accountType", e.target.value)}
               />
@@ -450,6 +461,7 @@ export default function Home() {
               <input
                 type="text"
                 className={inputClass}
+                placeholder="The Bride"
                 value={data.beneficiaryName}
                 onChange={(e) => update("beneficiaryName", e.target.value)}
               />
