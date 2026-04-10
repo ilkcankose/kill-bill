@@ -189,9 +189,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--background)] py-10 px-4">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-black text-[var(--yellow)] mb-2 tracking-tight">
-          KILL BILL
-        </h1>
+        <div className="mb-2">
+          <img src="/kill-bill-logo.svg" alt="Kill Bill" className="h-12 sm:h-16" />
+        </div>
         <p className="text-sm text-[var(--text-muted)] mb-8">Slash through your billing paperwork</p>
 
         {/* Invoice Meta */}
