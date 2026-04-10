@@ -246,14 +246,14 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <input
                   type="date"
-                  className={inputClass}
+                  className={`${inputClass} min-w-0`}
                   value={data.billingPeriodStart}
                   onChange={(e) => update("billingPeriodStart", e.target.value)}
                 />
-                <span className="text-[var(--text-muted)] text-sm">—</span>
+                <span className="text-[var(--text-muted)] text-sm shrink-0">—</span>
                 <input
                   type="date"
-                  className={inputClass}
+                  className={`${inputClass} min-w-0`}
                   value={data.billingPeriodEnd}
                   onChange={(e) => update("billingPeriodEnd", e.target.value)}
                 />
