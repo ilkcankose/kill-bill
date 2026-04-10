@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Invoice Generator",
-  description: "Generate professional invoices as PDF",
+  title: "Kill Bill",
+  description: "Kill Bill - Invoice generator that slashes through your billing paperwork",
 };
 
 export default function RootLayout({
