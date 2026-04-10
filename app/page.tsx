@@ -6,7 +6,7 @@ import { InvoiceData, ServiceItem, Currency } from "./types";
 import PDFDownloadButton from "./PDFDownloadButton";
 
 const COUNTER_KEY = "invoice_counter";
-const COUNTER_START = 382;
+const COUNTER_START = 1;
 
 function getCounter(): number {
   if (typeof window === "undefined") return COUNTER_START;
@@ -74,6 +74,8 @@ function formatDateForDisplay(dateStr: string): string {
 export default function Home() {
   const [data, setData] = useState<InvoiceData>(defaultData);
   const [counter, setCounter] = useState(COUNTER_START);
+  const [manualMode, setManualMode] = useState(false);
+  const [manualInvoiceNumber, setManualInvoiceNumber] = useState("");
   const [exchangeRate, setExchangeRate] = useState<number | null>(null);
   const [rateLoading, setRateLoading] = useState(false);
   const [rateFlash, setRateFlash] = useState(false);
@@ -167,7 +169,7 @@ export default function Home() {
     const d = new Date(data.invoiceDate + "T00:00:00");
     const yy = String(d.getFullYear() % 100).padStart(2, "0");
     const mm = String(d.getMonth() + 1).padStart(2, "0");
-    return `${yy}${mm}${counter}`;
+    return `${yy}${mm}${String(counter).padStart(3, "0")}`;
   })();
 
   const handleDownloaded = () => {
@@ -200,10 +202,36 @@ export default function Home() {
             Invoice Details
           </h2>
           <div className="mb-4 p-3 bg-[var(--background)] rounded-lg border border-[var(--card-border)]">
-            <span className="text-xs font-semibold text-[var(--text-label)] uppercase tracking-wide">Invoice Number</span>
-            <p className="text-lg font-mono font-bold text-[var(--yellow)] mt-1">#{invoiceNumber}</p>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold text-[var(--text-label)] uppercase tracking-wide">Invoice Number</span>
+              <button
+                onClick={() => setManualMode(!manualMode)}
+                className={`text-[10px] px-3 py-1 rounded-full cursor-pointer transition ${
+                  manualMode
+                    ? "bg-[var(--yellow)] text-black font-bold"
+                    : "border border-[var(--input-border)] text-[var(--text-muted)] hover:border-[var(--yellow)] hover:text-[var(--yellow)]"
+                }`}
+              >
+                {manualMode ? "Switch to Auto" : "Enter Manually"}
+              </button>
+            </div>
+            {manualMode ? (
+              <div className="flex items-center gap-1 mt-1">
+                <span className="text-lg font-mono font-bold text-[var(--yellow)]">#</span>
+                <input
+                  type="text"
+                  className="flex-1 bg-transparent text-lg font-mono font-bold text-[var(--yellow)] outline-none border-b border-[var(--input-border)] focus:border-[var(--yellow)] transition"
+                  placeholder="Type your invoice number"
+                  value={manualInvoiceNumber}
+                  onChange={(e) => setManualInvoiceNumber(e.target.value)}
+                  autoFocus
+                />
+              </div>
+            ) : (
+              <p className="text-lg font-mono font-bold text-[var(--yellow)] mt-1">#{invoiceNumber}</p>
+            )}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-4">
             <div>
               <label className={labelClass}>Invoice Date</label>
               <input
@@ -214,22 +242,22 @@ export default function Home() {
               />
             </div>
             <div>
-              <label className={labelClass}>Billing Period Start</label>
-              <input
-                type="date"
-                className={inputClass}
-                value={data.billingPeriodStart}
-                onChange={(e) => update("billingPeriodStart", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className={labelClass}>Billing Period End</label>
-              <input
-                type="date"
-                className={inputClass}
-                value={data.billingPeriodEnd}
-                onChange={(e) => update("billingPeriodEnd", e.target.value)}
-              />
+              <label className={labelClass}>Billing Period</label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="date"
+                  className={inputClass}
+                  value={data.billingPeriodStart}
+                  onChange={(e) => update("billingPeriodStart", e.target.value)}
+                />
+                <span className="text-[var(--text-muted)] text-sm">—</span>
+                <input
+                  type="date"
+                  className={inputClass}
+                  value={data.billingPeriodEnd}
+                  onChange={(e) => update("billingPeriodEnd", e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -471,7 +499,7 @@ export default function Home() {
 
         {/* Download Button */}
         <div className="flex gap-4">
-          <PDFDownloadButton data={pdfData} invoiceNumber={invoiceNumber} onDownloaded={handleDownloaded} />
+          <PDFDownloadButton data={pdfData} invoiceNumber={manualMode ? manualInvoiceNumber : invoiceNumber} onDownloaded={manualMode ? undefined : handleDownloaded} />
         </div>
       </div>
     </div>

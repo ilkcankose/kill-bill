@@ -10,7 +10,7 @@ export default function PDFDownloadButton({
 }: {
   data: InvoiceData;
   invoiceNumber: string;
-  onDownloaded: () => void;
+  onDownloaded?: () => void;
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +26,7 @@ export default function PDFDownloadButton({
       a.download = `invoice-${invoiceNumber || "draft"}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
-      onDownloaded();
+      onDownloaded?.();
     } catch (err) {
       console.error("PDF generation failed:", err);
     } finally {
