@@ -197,7 +197,7 @@ export default function Home() {
         <p className="text-sm text-[var(--text-muted)] mb-8">Slash through your billing paperwork</p>
 
         {/* Invoice Meta */}
-        <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6 mb-6">
+        <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6 mb-6 overflow-hidden">
           <h2 className="text-lg font-semibold text-[var(--yellow)] mb-4">
             Invoice Details
           </h2>
