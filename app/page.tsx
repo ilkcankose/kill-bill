@@ -189,7 +189,7 @@ export default function Home() {
   const labelClass = "block text-xs font-semibold text-[var(--text-label)] uppercase tracking-wide mb-1";
 
   return (
-    <div className="min-h-screen bg-[var(--background)] py-10 px-4">
+    <div className="min-h-screen bg-[var(--background)] py-10 px-4 overflow-x-hidden">
       <div className="max-w-3xl mx-auto">
         <div className="mb-2">
           <img src="/kill-bill-logo.svg" alt="Kill Bill" className="h-12 sm:h-16" />
