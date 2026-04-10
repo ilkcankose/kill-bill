@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kill Bill",
   description: "Kill Bill - Invoice generator that slashes through your billing paperwork",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
