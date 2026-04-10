@@ -183,24 +183,25 @@ export default function Home() {
   };
 
   const inputClass =
-    "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition";
-  const labelClass = "block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1";
+    "w-full rounded-lg border border-[var(--input-border)] bg-[var(--input-bg)] px-3 py-2 text-sm text-white focus:border-[var(--yellow)] focus:ring-1 focus:ring-[var(--yellow)] outline-none transition";
+  const labelClass = "block text-xs font-semibold text-[var(--text-label)] uppercase tracking-wide mb-1";
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
+    <div className="min-h-screen bg-[var(--background)] py-10 px-4">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
-          Kill Bill
+        <h1 className="text-4xl font-black text-[var(--yellow)] mb-2 tracking-tight">
+          KILL BILL
         </h1>
+        <p className="text-sm text-[var(--text-muted)] mb-8">Slash through your billing paperwork</p>
 
         {/* Invoice Meta */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">
+        <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6 mb-6">
+          <h2 className="text-lg font-semibold text-[var(--yellow)] mb-4">
             Invoice Details
           </h2>
-          <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Invoice Number</span>
-            <p className="text-lg font-mono font-bold text-gray-900 mt-1">#{invoiceNumber}</p>
+          <div className="mb-4 p-3 bg-[var(--background)] rounded-lg border border-[var(--card-border)]">
+            <span className="text-xs font-semibold text-[var(--text-label)] uppercase tracking-wide">Invoice Number</span>
+            <p className="text-lg font-mono font-bold text-[var(--yellow)] mt-1">#{invoiceNumber}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -235,8 +236,8 @@ export default function Home() {
 
         {/* From / To */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-          <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">From</h2>
+          <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6">
+            <h2 className="text-lg font-semibold text-[var(--yellow)] mb-4">From</h2>
             <div className="space-y-3">
               <div>
                 <label className={labelClass}>Name</label>
@@ -268,8 +269,8 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">To</h2>
+          <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6">
+            <h2 className="text-lg font-semibold text-[var(--yellow)] mb-4">To</h2>
             <div className="space-y-3">
               <div>
                 <label className={labelClass}>Company Name</label>
@@ -303,13 +304,13 @@ export default function Home() {
         </div>
 
         {/* Services */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+        <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-800">Services</h2>
+            <h2 className="text-lg font-semibold text-[var(--yellow)]">Services</h2>
             <div className="flex items-center gap-2">
-              <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Currency</label>
+              <label className="text-xs font-semibold text-[var(--text-label)] uppercase tracking-wide">Currency</label>
               <select
-                className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 outline-none"
+                className="rounded-lg border border-[var(--input-border)] bg-[var(--input-bg)] px-3 py-1.5 text-sm text-white focus:border-[var(--yellow)] outline-none"
                 value={data.currency}
                 onChange={(e) => update("currency", e.target.value)}
               >
@@ -321,15 +322,15 @@ export default function Home() {
                 disabled={rateLoading}
                 className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs cursor-pointer transition-all duration-300 ${
                   rateFlash
-                    ? "border-green-400 bg-green-50 text-green-700"
-                    : "border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400"
+                    ? "border-[var(--accent-green)] bg-green-900/30 text-green-400"
+                    : "border-[var(--input-border)] text-[var(--text-muted)] hover:border-[var(--yellow)] hover:text-[var(--yellow)]"
                 } disabled:opacity-50`}
               >
                 <span className={`inline-block transition-transform duration-500 ${rateLoading ? "animate-spin" : ""}`}>↻</span>
                 {exchangeRate
                   ? `1 USD = ${exchangeRate.toFixed(2)} TRY`
                   : rateLoading ? "Loading..." : "Load rate"}
-                {rateFlash && <span className="text-green-500 text-[10px]">updated</span>}
+                {rateFlash && <span className="text-green-400 text-[10px]">updated</span>}
               </button>
             </div>
           </div>
@@ -346,7 +347,7 @@ export default function Home() {
                   }
                 />
                 <div className="flex items-center gap-1">
-                  <span className="text-sm text-gray-400">{currencySymbol}</span>
+                  <span className="text-sm text-[var(--text-muted)]">{currencySymbol}</span>
                   <input
                     type="number"
                     className={`${inputClass} w-32`}
@@ -360,7 +361,7 @@ export default function Home() {
                 {data.services.length > 1 && (
                   <button
                     onClick={() => removeService(i)}
-                    className="text-red-400 hover:text-red-600 text-lg px-2 transition"
+                    className="text-[var(--accent-red)] hover:text-red-400 text-lg px-2 transition"
                     title="Remove"
                   >
                     x
@@ -371,31 +372,31 @@ export default function Home() {
           </div>
           <button
             onClick={addService}
-            className="mt-3 text-sm text-blue-600 hover:text-blue-800 font-medium transition"
+            className="mt-3 text-sm text-[var(--yellow)] hover:text-[var(--yellow-dark)] font-medium transition"
           >
             + Add Service
           </button>
-          <div className="mt-4 pt-4 border-t border-gray-200 flex justify-between items-center">
-            <span className="font-semibold text-gray-700">Total</span>
-            <span className="text-xl font-bold text-gray-900">
+          <div className="mt-4 pt-4 border-t border-[var(--card-border)] flex justify-between items-center">
+            <span className="font-semibold text-[var(--text-muted)]">Total</span>
+            <span className="text-xl font-bold text-[var(--yellow)]">
               {currencySymbol}{total.toFixed(2)}
             </span>
           </div>
           {data.currency === "TRY" && exchangeRate && (
-            <div className="mt-2 text-sm text-gray-500 text-right">
+            <div className="mt-2 text-sm text-[var(--text-muted)] text-right">
               ≈ ${(total / exchangeRate).toFixed(2)} USD
             </div>
           )}
           {data.currency === "USD" && exchangeRate && (
-            <div className="mt-2 text-sm text-gray-500 text-right">
+            <div className="mt-2 text-sm text-[var(--text-muted)] text-right">
               ≈ ₺{(total * exchangeRate).toFixed(2)} TRY
             </div>
           )}
         </section>
 
         {/* Payment Details */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">
+        <section className="bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] p-6 mb-8">
+          <h2 className="text-lg font-semibold text-[var(--yellow)] mb-4">
             Payment Details
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

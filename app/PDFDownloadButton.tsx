@@ -38,9 +38,9 @@ export default function PDFDownloadButton({
     <button
       onClick={handleDownload}
       disabled={loading}
-      className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-xl shadow transition text-lg cursor-pointer disabled:cursor-wait"
+      className="w-full bg-[var(--yellow)] hover:bg-[var(--yellow-dark)] disabled:opacity-50 text-black font-bold py-3 px-6 rounded-xl shadow transition text-lg cursor-pointer disabled:cursor-wait uppercase tracking-wide"
     >
-      {loading ? "Generating PDF..." : "Download PDF"}
+      {loading ? "Slashing..." : "Kill the Bill"}
     </button>
   );
 }
