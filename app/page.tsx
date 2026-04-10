@@ -232,16 +232,16 @@ export default function Home() {
             )}
           </div>
           <div className="space-y-4">
-            <div>
+            <div className="overflow-hidden">
               <label className={labelClass}>Invoice Date</label>
               <input
                 type="date"
-                className={inputClass}
+                className={`${inputClass} min-w-0`}
                 value={data.invoiceDate}
                 onChange={(e) => update("invoiceDate", e.target.value)}
               />
             </div>
-            <div>
+            <div className="overflow-hidden">
               <label className={labelClass}>Billing Period</label>
               <div className="flex items-center gap-2">
                 <input
